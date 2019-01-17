@@ -1,4 +1,4 @@
-# OniQ Test - Show me the code!
+# OniQ Test
 
 ### Avaliação
 Primeiramente muito obrigado por fazer este teste, ele é necessário para avaliar as boas práticas de desenvolvimento e modelagem em problemas simples.
