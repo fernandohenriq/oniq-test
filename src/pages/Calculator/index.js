@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import Header from '../../components/Header';
+import Button from '../../components/Button';
 
 import './styles.css'
 
@@ -106,7 +107,7 @@ function Calculator(){
               <p>R$ <span>{planResult}</span></p>
               <p>Sem um plano: <s>R$ {noPlanResult}</s></p>
               <div className="input-group">
-                <button>Peça já o seu plano</button>
+                <Button>Peça já o seu plano</Button>
               </div>
             </div>
           </div>
