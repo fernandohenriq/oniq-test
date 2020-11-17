@@ -1,0 +1,68 @@
+:root{
+    --color-background: #FFFFFF;
+    --color-primary: #00416D;
+    --color-primary-dark: #1B2A37;
+    --color-secondary: #FC6621;
+    --color-secondary-dark: #EC661A;
+    font-size: 60%;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body, #root {
+    height: 100vh;
+}
+
+body {
+    background-color: var(--color-background);
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    padding: 1rem;
+    width: 90vw;
+    max-width: 1100px;
+}
+
+input, select {
+    min-height: 4rem;
+    width: 100%;
+    padding-left: 1rem;
+    border-radius: 1rem;
+    border-width: 1px;
+    border-color: rgba(0,0,0,1);
+    font-size: 1.5rem;
+    background-color: transparent;
+}
+
+select {
+    
+}
+
+button, .button {
+    min-height: 5rem;
+    width: 100%;
+    border-radius: 1.25rem;
+    border-width: 0rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    background-color: var(--color-secondary);
+    color: #ffffff;
+}
+
+/* DESKTOP */
+@media (min-width: 700px) {
+    :root {
+        font-size: 115%;
+    }
+    
+    .container {
+        width: 75vw;
+    }
+
+}
