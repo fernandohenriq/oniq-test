@@ -2,6 +2,91 @@
   width: 100%;
 }
 
-#calc #text p {
+#calc #text {
+  padding: 3rem 0;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 3rem;
+  text-align: center;
+  color: var(--color-primary);
+}
+
+#calc #text span {
+  color: var(--color-secondary);
+}
+
+#calc .input-group label {
+  font-size: 1.4rem;
+}
+
+#calc #value {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+#calc #value button{
+  width: 100%;
+  margin: 2rem 0 0 0;
+}
+
+#calc #show-value {
+  width: 100%;
+  text-align: center;
+}
+
+#calc #show-value p {
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: var(--color-secondary);
+}
+
+#calc #show-value p span {
+  font-size: 4rem;
+  font-weight: 700;
+  color: var(--color-secondary);
+}
+
+#calc #show-value p:first-of-type {
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+#calc #show-value p:last-of-type {
+  font-size: 1.5rem;
+  font-weight: 300;
+  text-transform: initial;
+  color: var(--color-primary);
+}
+
+#calc {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* DESKTOP */
+@media (min-width: 700px) {
+  :root {
+      font-size: 90%;
+  }
+  
+  .container {
+      width: 90vw;
+  }
+
+  #calc form {
+      width: 45%;
+      min-width: 30rem;
+      margin: 0rem 2.5%;
+  }
+
+  #calc #value {
+      width: 45%;
+      min-width: 30rem;
+      margin: 0rem 2.5%;
+  }
   
 }
