@@ -4,6 +4,8 @@
     --color-primary-dark: #1B2A37;
     --color-secondary: #FC6621;
     --color-secondary-dark: #EC661A;
+    
+    font-family: 'Roboto', sans-serif;
     font-size: 60%;
 }
 
@@ -30,18 +32,15 @@ body {
 }
 
 input, select {
-    min-height: 4rem;
+    min-height: 5rem;
     width: 100%;
     padding-left: 1rem;
     border-radius: 1rem;
     border-width: 1px;
     border-color: rgba(0,0,0,1);
-    font-size: 1.5rem;
+    font-size: 2rem;
     background-color: transparent;
-}
-
-select {
-    
+    color: var(--color-primary-dark);
 }
 
 button, .button {
@@ -53,6 +52,18 @@ button, .button {
     font-weight: 700;
     background-color: var(--color-secondary);
     color: #ffffff;
+}
+
+select:hover, button:hover, .button:hover {
+    cursor: pointer;
+}
+
+.input-group {
+    margin: 1.0rem 0;
+}
+
+.input-group * {
+    margin: 0.5rem 0;
 }
 
 /* DESKTOP */
