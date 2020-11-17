@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import Select from 'react-select';
 
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
@@ -65,15 +63,17 @@ function Calculator(){
               <label htmlFor="input-minutes">Quantidade de minutos</label>
               <input className="input" type="number" name="input-minutes" id="input-minutes" placeholder="0 min" />
             </div>
+          </form>
+          <div id="value">
             <div id="show-value">
               <p>Você paga:</p>
               <p>R$ <span>0,00</span></p>
               <p>Sem um plano: <s>R$ {showValue}</s></p>
+              <div className="input-group">
+                <button onClick="">Peça já o seu plano</button>
+              </div>
             </div>
-            <div className="input-group">
-              <button onClick="">Peça já o seu plano</button>
-            </div>
-          </form>
+          </div>
         </div>
       </div>
       <Footer />
