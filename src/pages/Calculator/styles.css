@@ -69,13 +69,6 @@
 
 /* DESKTOP */
 @media (min-width: 700px) {
-  :root {
-      font-size: 90%;
-  }
-  
-  .container {
-      width: 90vw;
-  }
 
   #calc form {
       width: 45%;

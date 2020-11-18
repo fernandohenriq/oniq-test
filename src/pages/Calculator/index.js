@@ -8,9 +8,9 @@ import './styles.css'
 function Calculator(){
 
   const [plans, setPlans] = useState([
-    {value: "1", label: "FaleMais30", time: 30},
-    {value: "2", label: "FaleMais60", time: 60},
-    {value: "3", label: "FaleMais120", time: 120}
+    {value: "1", label: "FaleMais 30", time: 30},
+    {value: "2", label: "FaleMais 60", time: 60},
+    {value: "3", label: "FaleMais 120", time: 120}
   ]);
 
   const [cities, setCities] = useState([
