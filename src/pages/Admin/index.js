@@ -1,10 +1,6 @@
 import React, { useState } from 'react';
-<<<<<<< HEAD
 import { Link } from 'react-router-dom';
 import firebase from "../../utils/firebase";
-=======
-import firebase from "../../firebase";
->>>>>>> d6aef5369daf2f453d47c5c7e4a050e9055de72b
 
 import Header from '../../components/Header';
 import Table from '../../components/Table';
@@ -32,7 +28,6 @@ function Admin() {
 
   return <>
     <Header />
-<<<<<<< HEAD
     <div id="admin">
       <div className="container">
         <div>
@@ -42,11 +37,6 @@ function Admin() {
           <Table data={tableData}></Table>
         </div>
       </div>
-=======
-    <button onClick={() => firebase.auth().signOut()}>Sair</button>
-    <div>
-      <Table data={tableData}></Table>
->>>>>>> d6aef5369daf2f453d47c5c7e4a050e9055de72b
     </div>
   </>
 }
