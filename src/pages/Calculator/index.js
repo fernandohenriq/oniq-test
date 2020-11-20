@@ -35,7 +35,7 @@ function Calculator(){
   const [plan, setPlan] = useState("0");
   const [origin, setOrigin] = useState("0");
   const [destiny, setDestiny] = useState("0");
-  const [minutes, setMinutes] = useState(0);
+  const [minutes, setMinutes] = useState();
   const [result, setResult] = useState({ withPlan: '0,00', withOutPlan: '0,00'})
 
   useEffect(() => {
@@ -122,7 +122,7 @@ function Calculator(){
             </div>
             <div className="input-group">
               <label htmlFor="input-minutes">Quantidade de minutos</label>
-              <input className="input" type="number" name="input-minutes" id="input-minutes" placeholder="0 min" value={minutes} onChange={e => setMinutes(e.target.value)}/>
+              <input className="input" type="number" name="input-minutes" id="input-minutes" placeholder="0" min="0 min" value={minutes} onChange={e => setMinutes(e.target.value)}/>
             </div>
           </form>
           <div id="value">
