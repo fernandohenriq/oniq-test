@@ -33,17 +33,17 @@ const Login = ({ history }) => {
     <Header />
     <div id="admin" onSubmit={handleLogin}>
       <form action="/admin" method="POST">
-        <i class="fa fa-sign-in" aria-hidden="true"></i>
+        <i className="fa fa-sign-in" aria-hidden="true"></i>
         <div className="input-group">
-          <label htmlFor="email">E-mail</label>
-          <input type="email" name="email" id="input-email" value="email@email.com" />
+          <label htmlFor="input-email">E-mail</label>
+          <input type="email" name="email" id="input-email"/>
         </div>
         <div className="input-group">
-          <label htmlFor="password">Senha</label>
-          <input type="password" name="password" id="input-email" value="123456"/>
+          <label htmlFor="input-pass">Senha</label>
+          <input type="password" name="password" id="input-pass"/>
         </div>
         <div className="input-group">
-          <Button type="submit">Entrar</Button>
+          <Button theme="primary" type="submit">Entrar</Button>
         </div>
       </form>
     </div>
