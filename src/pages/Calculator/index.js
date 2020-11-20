@@ -35,11 +35,17 @@ function Calculator(){
   const [plan, setPlan] = useState("0");
   const [origin, setOrigin] = useState("0");
   const [destiny, setDestiny] = useState("0");
-  const [minutes, setMinutes] = useState();
+  const [minutes, setMinutes] = useState(0);
   const [result, setResult] = useState({ withPlan: '0,00', withOutPlan: '0,00'})
 
+  const [logTimer, setLogTimer] = useState(0);
+
   useEffect(() => {
+
+    setLogTimer(1.5);
+  
     if ( plan !== "0" && origin !== "0" && destiny !== "0" && minutes ) {
+
       const orig = cities[origin].code;
       const dest = cities[destiny].code;
       const time = plans[plan].time
@@ -61,22 +67,28 @@ function Calculator(){
         withPlan: resPlan(),
         withOutPlan: resNoPlan()
       });
-  
+    
+    }
+  }, [plan, origin, destiny, minutes, ])
+
+  useEffect(() => {
+    if (logTimer > 0){
+      setTimeout(() => setLogTimer(logTimer - 0.5), 500);
+    } else if ( plan !== "0" && origin !== "0" && destiny !== "0" && minutes ) {
       const log = {
         date: new Date().toLocaleString(),
-        origin: orig,
-        destiny: dest,
+        origin: cities[origin].code,
+        destiny: cities[destiny].code,
         minutes: minutes,
         plan: plans[plan].label,
-        planPrice: resPlan(),
-        noPlanPrice: resNoPlan()
+        planPrice: result.withPlan,
+        noPlanPrice: result.withOutPlan
       }
-  
+
       const dataRef = firebase.database().ref('log');
       dataRef.push(log);
-      
     }
-  }, [plan, origin, destiny, minutes]);
+  }, [logTimer]);
 
   return(
     <>
