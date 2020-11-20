@@ -1,25 +1,35 @@
 import React, { useState } from 'react';
+import firebase from "../../firebase";
 
 import Header from '../../components/Header';
-import Button from '../../components/Button';
 import Table from '../../components/Table';
 
 import './styles.css'
 
 function Admin() {
+
+  const [tableData, setTableData] = useState([]);
+  
+  React.useEffect(() => {
+    const logRef = firebase.database().ref('log');
+    
+    logRef.on('value', (snapshot) => {
+      const log = snapshot.val();
+      const logList = [];
+
+      for (let i in log) {
+        logList.push(log[i]);
+      }
+      
+      setTableData(logList);
+    })
+  }, []);
+
   return <>
     <Header />
+    <button onClick={() => firebase.auth().signOut()}>Sair</button>
     <div>
-      <Table data={[
-        {date: "10/07/2018 11:35:29", origin: "011", destiny: "016", time: 20, plan: "FaleMais 30", planPrice: "0,00", noPlanPrice: "20,35"},
-        {date: "10/07/2018 12:15:45", origin: "018", destiny: "011", time: 60, plan: "FaleMais 60", planPrice: "0,00", noPlanPrice: "40,43"},
-        {date: "10/07/2018 11:35:29", origin: "011", destiny: "016", time: 20, plan: "FaleMais 30", planPrice: "0,00", noPlanPrice: "20,35"},
-        {date: "10/07/2018 12:15:45", origin: "018", destiny: "011", time: 60, plan: "FaleMais 60", planPrice: "0,00", noPlanPrice: "40,43"},
-        {date: "10/07/2018 11:35:29", origin: "011", destiny: "016", time: 20, plan: "FaleMais 30", planPrice: "0,00", noPlanPrice: "20,35"},
-        {date: "10/07/2018 12:15:45", origin: "018", destiny: "011", time: 60, plan: "FaleMais 60", planPrice: "0,00", noPlanPrice: "40,43"},
-        {date: "10/07/2018 11:35:29", origin: "011", destiny: "016", time: 20, plan: "FaleMais 30", planPrice: "0,00", noPlanPrice: "20,35"},
-        {date: "10/07/2018 12:15:45", origin: "018", destiny: "011", time: 60, plan: "FaleMais 60", planPrice: "0,00", noPlanPrice: "40,43"},
-      ]}></Table>
+      <Table data={tableData}></Table>
     </div>
   </>
 }

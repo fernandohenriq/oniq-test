@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import firebase from "../../firebase";
 
 import Header from '../../components/Header';
 import Button from '../../components/Button';
@@ -7,61 +8,74 @@ import './styles.css'
 
 function Calculator(){
 
-  const [plans, setPlans] = useState([
+  const plans = [
     {value: "1", label: "FaleMais 30", time: 30},
     {value: "2", label: "FaleMais 60", time: 60},
     {value: "3", label: "FaleMais 120", time: 120}
-  ]);
+  ];
 
-  const [cities, setCities] = useState([
-    {value: "1", label: "011	São Paulo -	SP", code: "011"},
-    {value: "2", label: "011	Aluminio -	SP", code: "011"},
-    {value: "3", label: "016	Altinopolis -	SP", code: "016"},
-    {value: "4", label: "016	Americo Brasiliense -	SP", code: "016"},
-    {value: "5", label: "017	Adolfo -	SP", code: "017"},
-    {value: "6", label: "017	Altair -	SP", code: "017"},
-    {value: "7", label: "018	Presidente Prudente -	SP", code: "018"},
-    {value: "8", label: "018	Presidente Venceslau -	SP", code: "018"}
-  ]);
+  const cities = [
+    {value: "1", code: "011"},
+    {value: "2", code: "016"},
+    {value: "3", code: "017"},
+    {value: "4", code: "018"}
+  ];
 
-  const [codeTable, setCodeTable] = useState([
+  const codeTable = [
     {valuee: "1", origin: "011", destiny: "016", price: 1.90},
     {valuee: "2", origin: "016", destiny: "011", price: 2.90},
     {valuee: "3", origin: "011", destiny: "017", price: 1.70},
     {valuee: "4", origin: "017", destiny: "011", price: 2.70},
     {valuee: "5", origin: "011", destiny: "018", price: 0.90},
     {valuee: "6", origin: "018", destiny: "011", price: 1.90},
-  ]);
+  ];
 
-  const [plan, setPlan] = React.useState("3");
-  const [origin, setOrigin] = React.useState("7");
-  const [destiny, setDestiny] = React.useState("1");
-  const [minutes, setMinutes] = React.useState(200);
-  const [planResult, setPlanResult] = React.useState("0,00");
-  const [noPlanResult, setNoPlanResult] = React.useState("0,00");
+  const [plan, setPlan] = useState("3");
+  const [origin, setOrigin] = useState("4");
+  const [destiny, setDestiny] = useState("1");
+  const [minutes, setMinutes] = useState(200);
+  const [result, setResult] = useState({
+    withPlan: '0,00',
+    withOutPlan: '0,00'
+  })
 
-  React.useEffect(() => {
-    const oriCode = cities.find(e => e.value === origin).code;
-    const desCode = cities.find(e => e.value === destiny).code;
-    const price = codeTable.find(e => e.origin === oriCode && e.destiny === desCode);
-    if(price){
-      setPlanResult(() => {
-        if(minutes <= plans[plan-1].time){
-          return "0,00";
-        }else{
-          var m = ((minutes - plans[plan-1].time)*price.price)*1.1;
-          return String(m.toFixed(2)).replace(".",",");
-        }
-      });
-      setNoPlanResult(() => {
-        var m = minutes*price.price;
-        return String(m.toFixed(2)).replace(".",",");
-      });
-    } else {
-      setPlanResult("-");
-      setNoPlanResult("-");
+  useEffect(() => {
+    const orig = cities[origin-1].code;
+    const dest = cities[destiny-1].code;
+    const time = plans[plan-1].time
+    const tax = codeTable.find((e) => e.origin === orig && e.destiny === dest);
+
+    const resPlan = () => {
+      if (minutes > time) {
+        return tax ? String((((minutes-time)*tax.price)*1.1).toFixed(2)).replace(".",",") : '-';
+      } else {
+        return '0,00';
+      }
     }
-  }, [cities, origin, destiny, codeTable, minutes, plans, plan, planResult]);
+    
+    const resNoPlan = () => {
+      return tax ? String(((minutes)*tax.price).toFixed(2)).replace(".",",") : '-';
+    }
+
+    setResult({
+      withPlan: resPlan(),
+      withOutPlan: resNoPlan()
+    });
+
+    const log = {
+      date: new Date().toLocaleString(),
+      origin: orig,
+      destiny: dest,
+      minutes: minutes,
+      plan: plans[plan-1].label,
+      planPrice: resPlan(),
+      noPlanPrice: resNoPlan()
+    }
+
+    const dataRef = firebase.database().ref('log');
+    dataRef.push(log);
+    
+  }, [plan, origin, destiny, minutes]);
 
   return(
     <>
@@ -84,7 +98,7 @@ function Calculator(){
               <label htmlFor="input-plan">DDD de origem</label>
               <select className="select" name="input-plan" id="input-plan" value={origin} onChange={e => setOrigin(e.target.value)}>
                 {cities.map((option) => (
-                  <option key={option.value} value={option.value}>{option.label}</option>
+                  <option key={option.value} value={option.value}>{option.code}</option>
                 ))}
               </select>
             </div>
@@ -92,7 +106,7 @@ function Calculator(){
               <label htmlFor="input-plan">DDD de destino</label>
               <select className="select" name="input-plan" id="input-plan" value={destiny} onChange={e => setDestiny(e.target.value)}>
                 {cities.map((option) => (
-                    <option key={option.value} value={option.value}>{option.label}</option>
+                    <option key={option.value} value={option.value}>{option.code}</option>
                 ))}
               </select>
             </div>
@@ -104,10 +118,10 @@ function Calculator(){
           <div id="value">
             <div id="show-value">
               <p>Valor por minuto:</p>
-              <p>R$ <span>{planResult}</span></p>
-              <p>Sem um plano: <s>R$ {noPlanResult}</s></p>
+              <p>R$ <span>{result.withPlan}</span></p>
+              <p>Sem um plano: <s>R$ {result.withOutPlan}</s></p>
               <div className="input-group">
-                <Button>Peça já o seu plano</Button>
+                <Button theme="secondary">Peça já o seu plano</Button>
               </div>
             </div>
           </div>
