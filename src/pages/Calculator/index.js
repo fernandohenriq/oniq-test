@@ -36,13 +36,10 @@ function Calculator(){
   const [origin, setOrigin] = useState("0");
   const [destiny, setDestiny] = useState("0");
   const [minutes, setMinutes] = useState(0);
-  const [result, setResult] = useState({
-    withPlan: '0,00',
-    withOutPlan: '0,00'
-  })
+  const [result, setResult] = useState({ withPlan: '0,00', withOutPlan: '0,00'})
 
   useEffect(() => {
-    if (plan !== "0" && origin !== "0" && destiny !== "0" && minutes ) {
+    if ( plan !== "0" && origin !== "0" && destiny !== "0" && minutes ) {
       const orig = cities[origin].code;
       const dest = cities[destiny].code;
       const time = plans[plan].time
@@ -116,6 +113,9 @@ function Calculator(){
               <label htmlFor="input-plan">DDD de destino</label>
               <select className="select" name="input-plan" id="input-plan" value={destiny} onChange={e => setDestiny(e.target.value)}>
                 {cities.map((option) => (
+                  option.value === "0" ?
+                    <option key={option.value} value={option.value} disabled>{option.code}</option>
+                  :                    
                     <option key={option.value} value={option.value}>{option.code}</option>
                 ))}
               </select>
