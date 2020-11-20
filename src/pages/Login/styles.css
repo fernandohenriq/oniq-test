@@ -1,27 +1,27 @@
-#admin form {
+#login form {
   margin: 2rem auto 2rem auto;
   padding: 1rem;
 }
 
-#admin i {
+#login i {
   width: 100%;
   text-align: center;
   font-size: 10rem;
   color: #1B2A37;
 }
 
-#admin label {
+#login label {
   font-size: 1.2rem;
   font-weight: 500;
 }
 
-#admin input {
+#login input {
   font-size: 1.5rem;
 }
 
 /* DESKTOP */
 @media (min-width: 700px) {
-  #admin form {
+  #login form {
     max-width: 50%;
   }
 }
