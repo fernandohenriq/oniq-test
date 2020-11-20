@@ -38,6 +38,7 @@ Ao selecionar um plano, é definido o valor máximo de minutos onde não será c
 
 ###### Login
 Acessando a rota ```/login``` é possível se autenticar através de um e-mail e senha através do Firebase Authentication.
+Usuário teste: email@email.com / 123456
 
 ###### Admin/Logs
 Em ```/admin``` é necessário que o usuário esteja autenticado. Na tabela de logs os dados serão exibidos em tempo real diretamente do Realtime Database Firebase a cada noma simulação.
