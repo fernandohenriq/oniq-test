@@ -1,21 +1,24 @@
-#table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-  color: #1B2A37;
-}
-
 #table thead {
-  background-color: #ff9939;
+  background-color: #d3751c;
   color: #ffffff;
-}
-
-#table td, #table th {
-  border: 1px solid #ff9939;
-  text-align: left;
-  padding: 8px;
 }
 
 #table tr:nth-child(even) {
   background-color: #ffcc9c;
+}
+
+#table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #ddd;
+}
+
+#table th, #table td {
+  text-align: left;
+  padding: 8px;
+}
+
+#table tr:nth-child(even){
+  background-color: #ffc996;
 }
