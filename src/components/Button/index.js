@@ -12,7 +12,7 @@ const styles = {
 }
 
 function Button (props) {
-  return <button style={styles} props>{props.children}</button>
+  return <button style={styles} >{props.children}</button>
 }
 
 export default Button;
