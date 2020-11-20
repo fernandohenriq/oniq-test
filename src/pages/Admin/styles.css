@@ -1,0 +1,13 @@
+#admin .container {
+  text-align: right;
+}
+
+#admin * {
+  padding: 0.5rem 0;
+}
+
+#admin i {
+  width: 100%;
+  text-align: right;
+  font-size: 2rem;
+}
