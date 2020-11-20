@@ -31,7 +31,7 @@ const Login = ({ history }) => {
 
   return <>
     <Header />
-    <div id="admin" onSubmit={handleLogin}>
+    <div id="login" onSubmit={handleLogin}>
       <form action="/admin" method="POST">
         <i className="fa fa-sign-in" aria-hidden="true"></i>
         <div className="input-group">
