@@ -1,18 +1,17 @@
-import firebase from "firebase/app";
+import firebase from 'firebase/app';
+import 'firebase/database';
 import "firebase/auth";
-import "firebase/firestore";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyCrzM974OPQmsGr-ySY_p9K9FYM2pChqUk",
-  authDomain: "falemais-b91a6.firebaseapp.com",
-  databaseURL: "https://falemais-b91a6.firebaseio.com",
-  projectId: "falemais-b91a6",
-  storageBucket: "falemais-b91a6.appspot.com",
-  messagingSenderId: "859405045923",
-  appId: "1:859405045923:web:fd11e82abae315c6b22f16"
+const config = {
+  apiKey: process.env.REACT_APP_FB_KEY,
+  authDomain: process.env.REACT_APP_FB_DOMAIN,
+  databaseURL: process.env.REACT_APP_FB_URL,
+  projectId: process.env.REACT_APP_FB_PROJID,
+  storageBucket: process.env.REACT_APP_FB_SBUCKET,
+  messagingSenderId: process.env.REACT_APP_FB_MSID,
+  appId: process.env.REACT_APP_FB_APPID
 };
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
 
-export const auth = firebase.auth();
-export const firestore = firebase.firestore();
+firebase.initializeApp(config);
+
+export default firebase;
