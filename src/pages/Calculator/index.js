@@ -122,7 +122,7 @@ function Calculator(){
             </div>
             <div className="input-group">
               <label htmlFor="input-minutes">Quantidade de minutos</label>
-              <input className="input" type="number" name="input-minutes" id="input-minutes" placeholder="0" min="0 min" value={minutes} onChange={e => setMinutes(e.target.value)}/>
+              <input className="input" type="number" name="input-minutes" id="input-minutes" placeholder="0 min" min="0" value={minutes} onChange={e => setMinutes(e.target.value)}/>
             </div>
           </form>
           <div id="value">
