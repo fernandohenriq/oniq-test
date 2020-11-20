@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 import './styles.css';
 
 function Table (props) {
@@ -17,15 +18,15 @@ function Table (props) {
         </tr>
       </thead>
       <tbody>
-        {props.data.map((e) => (
-          <tr>
+        {props.data.map((e, i) => (
+          <tr key={i}>
             <td>{e.date}</td>
             <td>{e.origin}</td>
             <td>{e.destiny}</td>
-            <td>{e.time}</td>
+            <td>{e.minutes}</td>
             <td>{e.plan}</td>
-            <td>{e.planPrice}</td>
-            <td>{e.noPlanPrice}</td>
+            <td>$ {e.planPrice}</td>
+            <td>$ {e.noPlanPrice}</td>
           </tr>
         ))}
       </tbody>
