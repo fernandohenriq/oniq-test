@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 import './styles.css';
 
 import oniqLogo from '../../assets/images/oniq-logo.png';
@@ -8,7 +10,9 @@ function Header() {
     <>
     <div id="header">
       <div className="container">
-        <img src={oniqLogo} alt="Oniq Logo"/>
+        <Link to="/">
+          <img src={oniqLogo} alt="Oniq Logo"/>
+        </Link>
       </div>
     </div>
     </>
