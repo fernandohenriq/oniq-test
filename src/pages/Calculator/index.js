@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from 'react';
+<<<<<<< HEAD
 import firebase from "../../utils/firebase";
+=======
+import firebase from "../../firebase";
+>>>>>>> d6aef5369daf2f453d47c5c7e4a050e9055de72b
 
 import Header from '../../components/Header';
 import Button from '../../components/Button';
@@ -9,14 +13,20 @@ import './styles.css'
 function Calculator(){
 
   const plans = [
+<<<<<<< HEAD
     {value: "0", label: "Selecionar", time: 0},
+=======
+>>>>>>> d6aef5369daf2f453d47c5c7e4a050e9055de72b
     {value: "1", label: "FaleMais 30", time: 30},
     {value: "2", label: "FaleMais 60", time: 60},
     {value: "3", label: "FaleMais 120", time: 120}
   ];
 
   const cities = [
+<<<<<<< HEAD
     {value: "0", code: "DDD"},
+=======
+>>>>>>> d6aef5369daf2f453d47c5c7e4a050e9055de72b
     {value: "1", code: "011"},
     {value: "2", code: "016"},
     {value: "3", code: "017"},
@@ -24,6 +34,7 @@ function Calculator(){
   ];
 
   const codeTable = [
+<<<<<<< HEAD
     {value: "1", origin: "011", destiny: "016", price: 1.90},
     {value: "2", origin: "016", destiny: "011", price: 2.90},
     {value: "3", origin: "011", destiny: "017", price: 1.70},
@@ -36,12 +47,27 @@ function Calculator(){
   const [origin, setOrigin] = useState("0");
   const [destiny, setDestiny] = useState("0");
   const [minutes, setMinutes] = useState(0);
+=======
+    {valuee: "1", origin: "011", destiny: "016", price: 1.90},
+    {valuee: "2", origin: "016", destiny: "011", price: 2.90},
+    {valuee: "3", origin: "011", destiny: "017", price: 1.70},
+    {valuee: "4", origin: "017", destiny: "011", price: 2.70},
+    {valuee: "5", origin: "011", destiny: "018", price: 0.90},
+    {valuee: "6", origin: "018", destiny: "011", price: 1.90},
+  ];
+
+  const [plan, setPlan] = useState("3");
+  const [origin, setOrigin] = useState("4");
+  const [destiny, setDestiny] = useState("1");
+  const [minutes, setMinutes] = useState(200);
+>>>>>>> d6aef5369daf2f453d47c5c7e4a050e9055de72b
   const [result, setResult] = useState({
     withPlan: '0,00',
     withOutPlan: '0,00'
   })
 
   useEffect(() => {
+<<<<<<< HEAD
     if (plan !== "0" && origin !== "0" && destiny !== "0" && minutes ) {
       const orig = cities[origin].code;
       const dest = cities[destiny].code;
@@ -79,6 +105,43 @@ function Calculator(){
       dataRef.push(log);
       
     }
+=======
+    const orig = cities[origin-1].code;
+    const dest = cities[destiny-1].code;
+    const time = plans[plan-1].time
+    const tax = codeTable.find((e) => e.origin === orig && e.destiny === dest);
+
+    const resPlan = () => {
+      if (minutes > time) {
+        return tax ? String((((minutes-time)*tax.price)*1.1).toFixed(2)).replace(".",",") : '-';
+      } else {
+        return '0,00';
+      }
+    }
+    
+    const resNoPlan = () => {
+      return tax ? String(((minutes)*tax.price).toFixed(2)).replace(".",",") : '-';
+    }
+
+    setResult({
+      withPlan: resPlan(),
+      withOutPlan: resNoPlan()
+    });
+
+    const log = {
+      date: new Date().toLocaleString(),
+      origin: orig,
+      destiny: dest,
+      minutes: minutes,
+      plan: plans[plan-1].label,
+      planPrice: resPlan(),
+      noPlanPrice: resNoPlan()
+    }
+
+    const dataRef = firebase.database().ref('log');
+    dataRef.push(log);
+    
+>>>>>>> d6aef5369daf2f453d47c5c7e4a050e9055de72b
   }, [plan, origin, destiny, minutes]);
 
   return(
@@ -105,10 +168,14 @@ function Calculator(){
               <label htmlFor="input-plan">DDD de origem</label>
               <select className="select" name="input-plan" id="input-plan" value={origin} onChange={e => setOrigin(e.target.value)}>
                 {cities.map((option) => (
+<<<<<<< HEAD
                   option.value === "0" ?
                     <option key={option.value} value={option.value} disabled>{option.code}</option>
                   :
                     <option key={option.value} value={option.value}>{option.code}</option>
+=======
+                  <option key={option.value} value={option.value}>{option.code}</option>
+>>>>>>> d6aef5369daf2f453d47c5c7e4a050e9055de72b
                 ))}
               </select>
             </div>
