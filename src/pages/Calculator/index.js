@@ -35,64 +35,22 @@ function Calculator(){
   const [plan, setPlan] = useState("0");
   const [origin, setOrigin] = useState("0");
   const [destiny, setDestiny] = useState("0");
-  const [minutes, setMinutes] = useState("");
+  const [minutes, setMinutes] = useState(0);
   const [result, setResult] = useState({ withPlan: '0,00', withOutPlan: '0,00'})
 
-  const [seconds, setSeconds] = useState(0);
-  const [isActive, setIsActive] = useState(false);
-
-  function sendLog () {
-    if ( plan !== "0" && origin !== "0" && destiny !== "0" && minutes ) {  
-      const log = {
-        date: new Date().toLocaleString(),
-        origin: cities[origin].code,
-        destiny: cities[destiny].code,
-        minutes: minutes ? minutes : 0,
-        plan: plans[plan].label,
-        planPrice: result.withPlan,
-        noPlanPrice: result.withOutPlan
-      }
-      
-      const dataRef = firebase.database().ref('log');
-      dataRef.push(log);
-    }
-  }
-  
-  function reset() {
-    setSeconds(0.75);
-    setIsActive(true);
-  }
+  const [logTimer, setLogTimer] = useState(0);
 
   useEffect(() => {
-    let interval = null;
-    
-    if (isActive) {
-      interval = setInterval(() => {
-        if(seconds > 0) {
-          setSeconds(seconds => seconds - 0.25);
-        } else {
-          sendLog();
-          setIsActive(false);
-        }
-      }, 250);
-    } else if (!isActive && seconds !== 0) {
-      clearInterval(interval);
-    }
 
-    return () => clearInterval(interval);
-
-  }, [isActive, seconds]);
+    setLogTimer(1.5);
   
-  useEffect(() => {
-    setIsActive(true);
-    reset();
+    if ( plan !== "0" && origin !== "0" && destiny !== "0" && minutes ) {
 
-    if ( plan !== "0" && origin !== "0" && destiny !== "0" ) {
       const orig = cities[origin].code;
       const dest = cities[destiny].code;
       const time = plans[plan].time
       const tax = codeTable.find((e) => e.origin === orig && e.destiny === dest);
-      
+  
       const resPlan = () => {
         if (minutes > time) {
           return tax ? String((((minutes-time)*tax.price)*1.1).toFixed(2)).replace(".",",") : '-';
@@ -109,9 +67,28 @@ function Calculator(){
         withPlan: resPlan(),
         withOutPlan: resNoPlan()
       });
+    
     }
+  }, [plan, origin, destiny, minutes, ])
 
-  }, [plan, origin, destiny, minutes]);
+  useEffect(() => {
+    if (logTimer > 0){
+      setTimeout(() => setLogTimer(logTimer - 0.5), 500);
+    } else if ( plan !== "0" && origin !== "0" && destiny !== "0" && minutes ) {
+      const log = {
+        date: new Date().toLocaleString(),
+        origin: cities[origin].code,
+        destiny: cities[destiny].code,
+        minutes: minutes,
+        plan: plans[plan].label,
+        planPrice: result.withPlan,
+        noPlanPrice: result.withOutPlan
+      }
+
+      const dataRef = firebase.database().ref('log');
+      dataRef.push(log);
+    }
+  }, [logTimer]);
 
   return(
     <>
