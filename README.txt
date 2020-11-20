@@ -10,7 +10,7 @@ Esta ferramenta tem o intuito de prover um relacionamento mais transparente com 
 
 ## Features
 ###### Cálculo automático
-Ao mudar um novo valor do formulário da calculadora é renderizado um novo valor com resultado do cálculo.
+Ao mudar um valor do formulário, os campos são calculados e é renderizado um novo resultado do cálculo.
 
 ###### Geração de logs
 Após realizar uma simulação de ligação é gerado um log com as informações da simulação e enviado para base de dados.
@@ -19,7 +19,7 @@ Após realizar uma simulação de ligação é gerado um log com as informaçõe
 Para acessar rotas privadas o usuário deve ter realizado login com e-mail e senha.
 
 ###### Visualização dos logs
-A visualização dos logs do usuário deve estar autenticado. Os dados serão exibidos em tempo real, a cada simulação feita a tabela será preenchida automaticamente.
+Para visualização dos logs o usuário deve estar autenticado. Os dados serão exibidos em tempo real, a cada simulação feita a tabela será preenchida automaticamente.
 
 ## Instalação
 ```
