@@ -1,6 +1,6 @@
 import React, { useCallback, useContext } from 'react';
 import { withRouter, Redirect } from 'react-router-dom';
-import firebase from '../../firebase';
+import firebase from '../../utils/firebase';
 import { AuthContext } from '../../utils/auth';
 
 import Header from '../../components/Header';

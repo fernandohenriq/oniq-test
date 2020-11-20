@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import firebase from "../../firebase";
+import firebase from "../../utils/firebase";
 
 import Header from '../../components/Header';
 import Button from '../../components/Button';
