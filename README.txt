@@ -25,11 +25,12 @@ Para visualização dos logs o usuário deve estar autenticado. Os dados serão 
 ```
 npm install
 ```
-ou
 
+## Inicie a aplicação
 ```
-yarn install
+npm start
 ```
+
 ## Como usar
 ###### Calculadora
 Acessando a rota ```/``` qualquer usuário poderá realizar uma simulação com a calculadora.
