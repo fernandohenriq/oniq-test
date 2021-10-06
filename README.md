@@ -1,4 +1,12 @@
 # oniq-falemais
+
+## Protótipo
+<p float="left">
+  <img src="./oniq-falemais-mobile.png" height="400" />
+  <img src="./oniq-falemais-desktop.png" height="400" />
+</p>
+
+
 ## Descrição
 Uma calculadora que simula em tempo real o valor da ligação levando em consideração:
 - Plano
